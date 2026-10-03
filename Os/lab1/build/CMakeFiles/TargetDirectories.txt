@@ -1,0 +1,5 @@
+D:/Labs/Os/lab1/build/CMakeFiles/Main.dir
+D:/Labs/Os/lab1/build/CMakeFiles/Creator.dir
+D:/Labs/Os/lab1/build/CMakeFiles/Reporter.dir
+D:/Labs/Os/lab1/build/CMakeFiles/ALL_BUILD.dir
+D:/Labs/Os/lab1/build/CMakeFiles/ZERO_CHECK.dir
