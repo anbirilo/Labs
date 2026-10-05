@@ -6,7 +6,11 @@ using namespace std;
 
 struct HandleCloser
 {
-    void operator()(HANDLE h) const { if (h) CloseHandle(h); }
+    void operator()(HANDLE h) const {
+         if (h) {
+            CloseHandle(h); 
+        } 
+    }
 };
 using ThreadHandle = unique_ptr<void, HandleCloser>;
 
@@ -86,15 +90,15 @@ int main()
             return 1;
         }
     }
-
-    ThreadHandle hMinMax(CreateThread(nullptr, 0, min_max, &d, 0, nullptr));
+    auto firstHandle = CreateThread(nullptr, 0, min_max, &d, 0, nullptr);
+    ThreadHandle hMinMax(firstHandle);
     if (!hMinMax)
     {
         cout << "Failed to create the min_max thread" << endl;
         return 1;
     }
-
-    ThreadHandle hAverage(CreateThread(nullptr, 0, average, &d, 0, nullptr));
+    auto secondHandle = CreateThread(nullptr, 0, average, &d, 0, nullptr);
+    ThreadHandle hAverage(secondHandle);
     if (!hAverage)
     {
         cout << "Failed to create the average thread" << endl;
