@@ -1,28 +1,6 @@
-#include <windows.h>
+#include "headers.h"
 #include <iostream>
-#include <vector>
-#include <memory>
 using namespace std;
-
-struct HandleCloser
-{
-    void operator()(HANDLE h) const {
-         if (h) {
-            CloseHandle(h); 
-        } 
-    }
-};
-using ThreadHandle = unique_ptr<void, HandleCloser>;
-
-struct Data
-{
-    vector<int> arr;    
-    int    min = 0;     
-    int    max = 0;     
-    size_t minIdx = 0;  
-    size_t maxIdx = 0; 
-    double avg = 0.0;  
-};
 
 DWORD WINAPI min_max(LPVOID param)
 {
@@ -45,7 +23,7 @@ DWORD WINAPI min_max(LPVOID param)
             d->max = d->arr[i];
             d->maxIdx = i;
         }
-        Sleep(7);              
+        Sleep(7);
     }
 
     cout << "min = " << d->min << ", max = " << d->max << endl;
@@ -109,12 +87,28 @@ int main()
     WaitForSingleObject(hMinMax.get(), INFINITE);
     WaitForSingleObject(hAverage.get(), INFINITE);
 
-    d.arr[d.minIdx] = static_cast<int>(d.avg);
-    d.arr[d.maxIdx] = static_cast<int>(d.avg);
+    HMODULE hLib = LoadLibraryA("replacelib.dll");
+    if (!hLib)
+    {
+        cout << "Failed to load replacelib.dll" << endl;
+        return 1;
+    }
+
+    ReplaceFunc replace = (ReplaceFunc)GetProcAddress(hLib, "replace_elements");
+    if (!replace)
+    {
+        cout << "Failed to find function replace_elements" << endl;
+        FreeLibrary(hLib);
+        return 1;
+    }
+
+    replace(d.arr.data(), d.minIdx, d.maxIdx, static_cast<int>(d.avg));
+    FreeLibrary(hLib);
 
     cout << "Resulting array:" << endl;
-    for (int x : d.arr)
+    for (int x : d.arr) {
         cout << x << " ";
+    }
     cout << endl;
 
     return 0;
