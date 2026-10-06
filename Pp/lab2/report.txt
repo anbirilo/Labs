@@ -1,0 +1,13 @@
+Original string:          "17 07:11:25 abc123x 42 hello"
+Tokens (StringTokenizer):  [17, 07:11:25, abc123x, 42, hello]
+Tokens (String.split):     [17, 07:11:25, abc123x, 42, hello]
+Diagnostics (String.lastIndexOf): rightmost delimiter by position - character ' ' at index 22
+Base-8 numbers (base-10):  [15, 34]
+Found dates (DD:MM:YY), sorted: [07:11:25]
+First date via DateFormat/Formatter: 7 ноября 2025 г.  /  Formatter: 07 ноября 2025
+String after random number insertion: "17 07:11:25 159  abc123x 42 hello"
+Removed substring (digit...Latin letter): "3x"
+Final string:              "17 07:11:25 159 abc12 42 hello"
+Original string reversed (StringBuilder.reverse): "olleh 24 x321cba 52:11:70 71"
+Share of base-8 numbers among tokens (NumberFormat, percent): 40,0 %
+Sum of base-8 numbers as currency (NumberFormat, currency): 49,00 ₽

@@ -50,35 +50,59 @@ public class ProcessingResult {
         this.lastDelimiterInfo = lastDelimiterInfo;
     }
 
-    public String[] getAllTokens() { return allTokens; }
-    public int[] getOctalNumbers() { return octalNumbers; }
-    public String[] getSortedDates() { return sortedDates; }
-    public String getStringAfterInsert() { return stringAfterInsert; }
-    public String getFinalString() { return finalString; }
-    public String getRemovedSubstring() { return removedSubstring; }
-    public String getReversedOriginal() { return reversedOriginal; }
-    public String getPercentOfOctalTokens() { return percentOfOctalTokens; }
-    public String getSumAsCurrency() { return sumAsCurrency; }
-    public String getFirstDateFormatted() { return firstDateFormatted; }
-    public String[] getTokensViaRegexSplit() { return tokensViaRegexSplit; }
-    public String getLastDelimiterInfo() { return lastDelimiterInfo; }
+    public String[] getAllTokens() { 
+        return allTokens; 
+        }
+    public int[] getOctalNumbers() { 
+        return octalNumbers; 
+        }
+    public String[] getSortedDates() { 
+        return sortedDates; 
+        }
+    public String getStringAfterInsert() { 
+        return stringAfterInsert; 
+        }
+    public String getFinalString() { 
+        return finalString; 
+        }
+    public String getRemovedSubstring() { 
+        return removedSubstring; 
+        }
+    public String getReversedOriginal() {
+        return reversedOriginal; 
+        }
+    public String getPercentOfOctalTokens() { 
+        return percentOfOctalTokens; 
+        }
+    public String getSumAsCurrency() { 
+        return sumAsCurrency; 
+        }
+    public String getFirstDateFormatted() { 
+        return firstDateFormatted; 
+        }
+    public String[] getTokensViaRegexSplit() { 
+        return tokensViaRegexSplit; 
+        }
+    public String getLastDelimiterInfo() { 
+        return lastDelimiterInfo;
+        }
 
     public String buildReport(String originalLine1) {
         StringBuilder report = new StringBuilder();
 
-        report.append(String.format("Исходная строка:          \"%s\"%n", originalLine1));
-        report.append(String.format("Лексемы (StringTokenizer): %s%n", java.util.Arrays.toString(allTokens)));
-        report.append(String.format("Лексемы (String.split):    %s%n", java.util.Arrays.toString(tokensViaRegexSplit)));
-        report.append(String.format("Диагностика (String.lastIndexOf): %s%n", lastDelimiterInfo));
-        report.append(String.format("Числа 8-й с/с (10-я с/с):  %s%n", java.util.Arrays.toString(octalNumbers)));
-        report.append(String.format("Найденные даты (ДД:ММ:ГГ), отсортированы: %s%n", java.util.Arrays.toString(sortedDates)));
-        report.append(String.format("Первая дата в формате DateFormat/Formatter: %s%n", firstDateFormatted));
-        report.append(String.format("Строка после вставки случайного числа: \"%s\"%n", stringAfterInsert));
-        report.append(String.format("Удаленная подстрока (цифра...лат.буква): \"%s\"%n", removedSubstring));
-        report.append(String.format("Итоговая строка:           \"%s\"%n", finalString));
-        report.append(String.format("Исходная строка задом наперед (StringBuilder.reverse): \"%s\"%n", reversedOriginal));
-        report.append(String.format("Доля чисел 8-й с/с среди лексем (NumberFormat, percent): %s%n", percentOfOctalTokens));
-        report.append(String.format("Сумма чисел 8-й с/с как денежная сумма (NumberFormat, currency): %s%n", sumAsCurrency));
+        report.append(String.format("Original string:          \"%s\"%n", originalLine1));
+        report.append(String.format("Tokens (StringTokenizer):  %s%n", java.util.Arrays.toString(allTokens)));
+        report.append(String.format("Tokens (String.split):     %s%n", java.util.Arrays.toString(tokensViaRegexSplit)));
+        report.append(String.format("Diagnostics (String.lastIndexOf): %s%n", lastDelimiterInfo));
+        report.append(String.format("Base-8 numbers (base-10):  %s%n", java.util.Arrays.toString(octalNumbers)));
+        report.append(String.format("Found dates (DD:MM:YY), sorted: %s%n", java.util.Arrays.toString(sortedDates)));
+        report.append(String.format("First date via DateFormat/Formatter: %s%n", firstDateFormatted));
+        report.append(String.format("String after random number insertion: \"%s\"%n", stringAfterInsert));
+        report.append(String.format("Removed substring (digit...Latin letter): \"%s\"%n", removedSubstring));
+        report.append(String.format("Final string:              \"%s\"%n", finalString));
+        report.append(String.format("Original string reversed (StringBuilder.reverse): \"%s\"%n", reversedOriginal));
+        report.append(String.format("Share of base-8 numbers among tokens (NumberFormat, percent): %s%n", percentOfOctalTokens));
+        report.append(String.format("Sum of base-8 numbers as currency (NumberFormat, currency): %s%n", sumAsCurrency));
 
         return report.toString();
     }

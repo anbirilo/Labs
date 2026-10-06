@@ -24,15 +24,15 @@ public class LexemeProcessor {
     private final Random random = new Random();
 
     public LexemeProcessor() {
-        dateFormat = new SimpleDateFormat("dd:MM:yy", new Locale("ru", "RU"));
+        dateFormat = new SimpleDateFormat("dd:MM:yy", Locale.forLanguageTag("ru-RU"));
         dateFormat.setLenient(false);
     }
 
     public ProcessingResult process(String source, String delimiters) {
 
         if (delimiters.indexOf(':') >= 0) {
-            System.out.println("ВНИМАНИЕ: символ ':' входит в список разделителей - " +
-                    "даты формата ДД:ММ:ГГ будут разорваны на части и не распознаются.");
+            System.out.println("WARNING: the ':' character is included in the delimiter list - " +
+                    "dates in DD:MM:YY format will be split apart and not recognized.");
         }
 
         String[] tokens = tokenize(source, delimiters);
@@ -82,7 +82,7 @@ public class LexemeProcessor {
 
         String reversedOriginal = new StringBuilder(source).reverse().toString();
 
-        Locale ruLocale = new Locale("ru", "RU");
+        Locale ruLocale = Locale.forLanguageTag("ru-RU");
         NumberFormat percentFormat = NumberFormat.getPercentInstance(ruLocale);
         percentFormat.setMinimumFractionDigits(1);
         double share = tokens.length == 0 ? 0.0 : (double) octalNumbers.length / countNonEmpty(tokens);
@@ -95,15 +95,15 @@ public class LexemeProcessor {
         NumberFormat currencyFormat = NumberFormat.getCurrencyInstance(ruLocale);
         String currencyStr = currencyFormat.format(sum);
 
-        String firstDateFormatted = "(дат не найдено)";
+        String firstDateFormatted = "(no dates found)";
         if (dateTokens.length > 0) {
             try {
                 Date d = dateFormat.parse(dateTokens[0]);
                 DateFormat pretty = DateFormat.getDateInstance(DateFormat.LONG, ruLocale);
-                String viaFormatter = String.format(ruLocale, "%1$td %1$tB %1$tY г.", d);
+                String viaFormatter = String.format(ruLocale, "%1$td %1$tB %1$tY", d);
                 firstDateFormatted = pretty.format(d) + "  /  Formatter: " + viaFormatter;
             } catch (ParseException e) {
-                firstDateFormatted = "(ошибка форматирования)";
+                firstDateFormatted = "(formatting error)";
             }
         }
 
@@ -229,7 +229,7 @@ public class LexemeProcessor {
         }
 
         if (bestStart == -1) {
-            return "(подходящая подстрока не найдена)";
+            return "(no matching substring found)";
         }
 
         String removed = sb.substring(bestStart, bestEnd);
@@ -256,9 +256,9 @@ public class LexemeProcessor {
             }
         }
         if (bestPos == -1) {
-            return "разделители из второй строки в первой строке не встречаются";
+            return "none of the delimiters from the second string appear in the first string";
         }
-        return String.format("последний по позиции разделитель - символ '%c' на индексе %d", bestChar, bestPos);
+        return String.format("rightmost delimiter by position - character '%c' at index %d", bestChar, bestPos);
     }
 
     private int countNonEmpty(String[] arr) {

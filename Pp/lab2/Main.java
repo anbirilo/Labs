@@ -13,13 +13,13 @@ public class Main {
 
         try (BufferedReader consoleIn = new BufferedReader(new InputStreamReader(System.in))) {
 
-            System.out.println("Введите первую строку (лексемы, числа 8-й с/с, возможно даты ДД:ММ:ГГ):");
+            System.out.println("Enter the first string (lexemes, base-8 numbers, possibly dates DD:MM:YY):");
             String line1 = consoleIn.readLine();
 
-            System.out.println("Введите вторую строку (символы-разделители, без повторов, без ':'):");
+            System.out.println("Enter the second string (delimiter characters, no duplicates, no ':'):");
             String line2 = consoleIn.readLine();
             if (line1 == null || line2 == null) {
-                System.err.println("Ошибка: не удалось считать обе строки (ввод прерван).");
+                System.err.println("Error: could not read both lines (input interrupted).");
                 return;
             }
 
@@ -29,16 +29,16 @@ public class Main {
             String report = result.buildReport(line1);
 
             System.out.println();
-            System.out.println("===== РЕЗУЛЬТАТ =====");
+            System.out.println("RESULT:");
             System.out.println(report);
 
             writeToFile(OUTPUT_FILE_NAME, report);
 
-            System.out.println("Чтение файла \"" + OUTPUT_FILE_NAME + "\" обратно");
+            System.out.println("Reading file \"" + OUTPUT_FILE_NAME + "\" back");
             printFile(OUTPUT_FILE_NAME);
 
         } catch (IOException e) {
-            System.err.println("Ошибка ввода/вывода: " + e.getMessage());
+            System.err.println("I/O error: " + e.getMessage());
         }
     }
 
@@ -46,7 +46,7 @@ public class Main {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
             writer.write(content);
         }
-        System.out.println("Результаты сохранены в файл \"" + fileName + "\"");
+        System.out.println("Results saved to file \"" + fileName + "\"");
     }
 
     private static void printFile(String fileName) throws IOException {
