@@ -2,12 +2,16 @@
 #include <vector> 
 #include <algorithm> 
 #include <string>
+#include <fstream>
 
 int main() { 
+    std::ifstream fin("input.txt");
+    std::ofstream fout("output.txt");
     std::string S; 
-    
+
+    fin >> S;
     int n = S.length(); 
-    
+
     std::string A = " " + S;
     std::string B = S;
     std::reverse(B.begin(), B.end());
@@ -25,7 +29,7 @@ int main() {
         } 
     } 
     
-    std::cout << matrix[n][n] << "\n"; 
+    fout << matrix[n][n] << "\n"; 
     
     std::string palindrome = "";
     int i = n; 
@@ -44,7 +48,7 @@ int main() {
     
 
     std::reverse(palindrome.begin(), palindrome.end());
-    std::cout << palindrome; 
+    fout << palindrome << '\n';
     
     return 0; 
 }
