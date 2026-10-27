@@ -1,0 +1,6 @@
+Ivanov;25;1000000000000000000000
+Petrov;31;500
+bad line here
+Sidorov;25;12345678901234567890
+Abramov;31;700
+Smith;abc;100
