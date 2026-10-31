@@ -90,7 +90,7 @@ public class ProcessingResult {
 
     public String buildReport(String originalLine1) {
         StringBuilder report = new StringBuilder();
-
+        
         report.append(String.format("Original string:          \"%s\"%n", originalLine1));
         report.append(String.format("Tokens (StringTokenizer):  %s%n", java.util.Arrays.toString(allTokens)));
         report.append(String.format("Tokens (String.split):     %s%n", java.util.Arrays.toString(tokensViaRegexSplit)));

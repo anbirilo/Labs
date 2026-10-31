@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.andrew.lab2b.LexemeProcessorTest" time="0.141" tests="11" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.andrew.lab2b.LexemeProcessorTest" time="0.098" tests="11" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="26"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -16,7 +16,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="RU"/>
     <property name="sun.boot.library.path" value="D:\JavaProjects\bin"/>
-    <property name="sun.java.command" value="C:\Users\Redmi\AppData\Local\Temp\surefire3818325725311752888\surefirebooter-20261007132555305_3.jar C:\Users\Redmi\AppData\Local\Temp\surefire3818325725311752888 2026-10-07T13-25-55_108-jvmRun1 surefire-20261007132555305_1tmp surefire_0-20261007132555305_2tmp"/>
+    <property name="sun.java.command" value="C:\Users\Redmi\AppData\Local\Temp\surefire2023219493288291764\surefirebooter-20261021121305281_3.jar C:\Users\Redmi\AppData\Local\Temp\surefire2023219493288291764 2026-10-21T12-13-05_156-jvmRun1 surefire-20261021121305281_1tmp surefire_0-20261021121305281_2tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="D:\Labs\Pp\lab2b\target\test-classes;D:\Labs\Pp\lab2b\target\classes;C:\Users\Redmi\.m2\repository\org\junit\jupiter\junit-jupiter\5.10.2\junit-jupiter-5.10.2.jar;C:\Users\Redmi\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.10.2\junit-jupiter-api-5.10.2.jar;C:\Users\Redmi\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\Redmi\.m2\repository\org\junit\platform\junit-platform-commons\1.10.2\junit-platform-commons-1.10.2.jar;C:\Users\Redmi\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\Redmi\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.10.2\junit-jupiter-params-5.10.2.jar;C:\Users\Redmi\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.10.2\junit-jupiter-engine-5.10.2.jar;C:\Users\Redmi\.m2\repository\org\junit\platform\junit-platform-engine\1.10.2\junit-platform-engine-1.10.2.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -31,7 +31,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\Redmi\AppData\Local\Temp\surefire3818325725311752888\surefirebooter-20261007132555305_3.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\Redmi\AppData\Local\Temp\surefire2023219493288291764\surefirebooter-20261021121305281_3.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="26.0.2.1+1-7"/>
@@ -51,7 +51,7 @@
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
     <property name="sun.os.patch.level" value=""/>
     <property name="native.encoding" value="Cp1251"/>
-    <property name="java.library.path" value="D:\JavaProjects\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Users\Redmi\bin;D:\Git\mingw64\bin;D:\Git\usr\local\bin;D:\Git\usr\bin;D:\Git\usr\bin;D:\Git\mingw64\bin;D:\Git\usr\bin;C:\Users\Redmi\bin;C:\Users\Redmi\AppData\Roaming\Code\User\globalStorage\github.copilot-chat\debugCommand;C:\Users\Redmi\AppData\Roaming\Code\User\globalStorage\github.copilot-chat\copilotCli;C:\Program Files\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\WINDOWS\System32\OpenSSH;C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit;C:\ProgramData\chocolatey\bin;C:\Program Files\nodejs;D:\GO\bin;D:\Git\cmd;C:\Program Files\MySQL\MySQL Server 8.0\bin;C:\ProgramData\mingw64\mingw64\bin;C:\Program Files\CMake\bin;%JAVA_HOME%\bin;C:\apache-maven-3.10.0\bin;C:\Program Files\MySQL\MySQL Shell 8.0\bin;C:\Users\Redmi\AppData\Local\Programs\Python\Launcher;C:\Users\Redmi\AppData\Local\Microsoft\WindowsApps;D:\Intellij\IntelliJ IDEA Community Edition 2025.2.2\bin;D:\Microsoft VS Code\bin;C:\Users\Redmi\AppData\Roaming\npm;C:\Users\Redmi\go\bin;C:\Users\Redmi\AppData\Local\Python\bin;C:\Users\Redmi\.vscode\extensions\vscjava.vscode-java-debug-0.59.0\bundled\scripts\noConfigScripts;D:\Git\usr\bin\vendor_perl;D:\Git\usr\bin\core_perl;."/>
+    <property name="java.library.path" value="D:\JavaProjects\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Users\Redmi\bin;D:\Git\mingw64\bin;D:\Git\usr\local\bin;D:\Git\usr\bin;D:\Git\usr\bin;D:\Git\mingw64\bin;D:\Git\usr\bin;C:\Users\Redmi\bin;C:\Users\Redmi\AppData\Roaming\Code\User\globalStorage\github.copilot-chat\debugCommand;C:\Users\Redmi\AppData\Roaming\Code\User\globalStorage\github.copilot-chat\copilotCli;C:\Program Files\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\WINDOWS\System32\OpenSSH;C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit;C:\ProgramData\chocolatey\bin;C:\Program Files\nodejs;D:\GO\bin;D:\Git\cmd;C:\Program Files\MySQL\MySQL Server 8.0\bin;C:\ProgramData\mingw64\mingw64\bin;C:\Program Files\CMake\bin;%JAVA_HOME%\bin;C:\apache-maven-3.10.0\bin;C:\Program Files\MySQL\MySQL Shell 8.0\bin;C:\Users\Redmi\AppData\Local\Programs\Python\Launcher;C:\Users\Redmi\AppData\Local\Microsoft\WindowsApps;D:\Intellij\IntelliJ IDEA Community Edition 2025.2.2\bin;D:\Microsoft VS Code\bin;C:\Users\Redmi\AppData\Roaming\npm;C:\Users\Redmi\go\bin;C:\Users\Redmi\AppData\Local\Python\bin;C:\Users\Redmi\.vscode\extensions\vscjava.vscode-java-debug-0.60.0\bundled\scripts\noConfigScripts;D:\Git\usr\bin\vendor_perl;D:\Git\usr\bin\core_perl;."/>
     <property name="java.vm.info" value="mixed mode, sharing"/>
     <property name="stderr.encoding" value="Cp1251"/>
     <property name="java.vendor" value="Oracle Corporation"/>
@@ -60,15 +60,15 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="70.0"/>
   </properties>
-  <testcase name="findsRightmostDelimiter" classname="com.andrew.lab2b.LexemeProcessorTest" time="0.049"/>
-  <testcase name="removesShortestDigitToLatinSubstring" classname="com.andrew.lab2b.LexemeProcessorTest" time="0.005"/>
-  <testcase name="sortsMultipleDatesChronologically" classname="com.andrew.lab2b.LexemeProcessorTest" time="0.01"/>
-  <testcase name="tokenizesBySpaceDelimiter" classname="com.andrew.lab2b.LexemeProcessorTest" time="0.003"/>
+  <testcase name="findsRightmostDelimiter" classname="com.andrew.lab2b.LexemeProcessorTest" time="0.037"/>
+  <testcase name="removesShortestDigitToLatinSubstring" classname="com.andrew.lab2b.LexemeProcessorTest" time="0.002"/>
+  <testcase name="sortsMultipleDatesChronologically" classname="com.andrew.lab2b.LexemeProcessorTest" time="0.016"/>
+  <testcase name="tokenizesBySpaceDelimiter" classname="com.andrew.lab2b.LexemeProcessorTest" time="0.002"/>
   <testcase name="reportsNoSubstringFoundWhenNoLatinLetters" classname="com.andrew.lab2b.LexemeProcessorTest" time="0.001"/>
-  <testcase name="insertsRandomNumberAfterDate" classname="com.andrew.lab2b.LexemeProcessorTest" time="0.003"/>
+  <testcase name="insertsRandomNumberAfterDate" classname="com.andrew.lab2b.LexemeProcessorTest" time="0.001"/>
   <testcase name="handlesMultipleDifferentDelimitersInARow" classname="com.andrew.lab2b.LexemeProcessorTest" time="0.001"/>
-  <testcase name="findsValidDateToken" classname="com.andrew.lab2b.LexemeProcessorTest" time="0.002"/>
-  <testcase name="parsesOctalNumbersCorrectly" classname="com.andrew.lab2b.LexemeProcessorTest" time="0.001"/>
+  <testcase name="findsValidDateToken" classname="com.andrew.lab2b.LexemeProcessorTest" time="0.003"/>
+  <testcase name="parsesOctalNumbersCorrectly" classname="com.andrew.lab2b.LexemeProcessorTest" time="0.0"/>
   <testcase name="rejectsInvalidDate" classname="com.andrew.lab2b.LexemeProcessorTest" time="0.001"/>
   <testcase name="insertsRandomNumberInMiddleWhenNoDates" classname="com.andrew.lab2b.LexemeProcessorTest" time="0.001"/>
 </testsuite>

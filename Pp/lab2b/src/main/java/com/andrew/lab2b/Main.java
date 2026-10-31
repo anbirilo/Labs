@@ -5,7 +5,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
-
+//java -cp target/classes com.andrew.lab2b.Main
 public class Main {
 //17 07:11:25 abc123x 42 hello
     private static final String OUTPUT_FILE_NAME = "report.txt";

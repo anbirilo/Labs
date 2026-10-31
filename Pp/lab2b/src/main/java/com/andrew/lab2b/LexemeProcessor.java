@@ -1,12 +1,14 @@
 package com.andrew.lab2b;
-import java.text.DateFormat;
+
 import java.text.NumberFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.time.format.FormatStyle;
+import java.time.format.ResolverStyle;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
-import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Random;
@@ -20,13 +22,14 @@ public class LexemeProcessor {
     private static final String DATE_TOKEN_REGEX = "\\d{2}:\\d{2}:\\d{2}";
     private static final Pattern DATE_PATTERN = Pattern.compile(DATE_TOKEN_REGEX);
 
-    private final SimpleDateFormat dateFormat;
+    private final DateTimeFormatter dateFormatter;
 
     private final Random random = new Random();
 
     public LexemeProcessor() {
-        dateFormat = new SimpleDateFormat("dd:MM:yy", Locale.forLanguageTag("ru-RU"));
-        dateFormat.setLenient(false);
+        dateFormatter = DateTimeFormatter
+                .ofPattern("dd:MM:uu", Locale.forLanguageTag("ru-RU"))
+                .withResolverStyle(ResolverStyle.STRICT);
     }
 
     public ProcessingResult process(String source, String delimiters) {
@@ -62,17 +65,7 @@ public class LexemeProcessor {
         }
 
         Arrays.sort(octalNumbers);
-
-        Comparator<String> dateComparator = (a, b) -> {
-            try {
-                Date da = dateFormat.parse(a);
-                Date db = dateFormat.parse(b);
-                return da.compareTo(db);
-            } catch (ParseException e) {
-                return 0;
-            }
-        };
-        Arrays.sort(dateTokens, dateComparator);
+        Arrays.sort(dateTokens, dateComparator());
 
         String stringAfterInsert = insertRandomAfterDates(source, tokens);
 
@@ -99,11 +92,13 @@ public class LexemeProcessor {
         String firstDateFormatted = "(no dates found)";
         if (dateTokens.length > 0) {
             try {
-                Date d = dateFormat.parse(dateTokens[0]);
-                DateFormat pretty = DateFormat.getDateInstance(DateFormat.LONG, ruLocale);
+                LocalDate d = LocalDate.parse(dateTokens[0], dateFormatter);
+                DateTimeFormatter pretty = DateTimeFormatter
+                        .ofLocalizedDate(FormatStyle.LONG)
+                        .withLocale(ruLocale);
                 String viaFormatter = String.format(ruLocale, "%1$td %1$tB %1$tY", d);
-                firstDateFormatted = pretty.format(d) + "  /  Formatter: " + viaFormatter;
-            } catch (ParseException e) {
+                firstDateFormatted = d.format(pretty) + "  /  Formatter: " + viaFormatter;
+            } catch (DateTimeParseException e) {
                 firstDateFormatted = "(formatting error)";
             }
         }
@@ -126,6 +121,19 @@ public class LexemeProcessor {
         );
     }
 
+    private Comparator<String> dateComparator() {
+        return this::compareDates;
+    }
+
+    private int compareDates(String a, String b) {
+        try {
+            LocalDate da = LocalDate.parse(a, dateFormatter);
+            LocalDate db = LocalDate.parse(b, dateFormatter);
+            return da.compareTo(db);
+        } catch (DateTimeParseException e) {
+            return 0;
+        }
+    }
 
     private String[] tokenize(String source, String delimiters) {
         StringTokenizer st = new StringTokenizer(source, delimiters);
@@ -162,15 +170,16 @@ public class LexemeProcessor {
         }
     }
 
+
     private boolean isValidDateToken(String token) {
         Matcher matcher = DATE_PATTERN.matcher(token);
         if (!matcher.matches()) {
             return false;
         }
         try {
-            dateFormat.parse(token);
+            LocalDate.parse(token, dateFormatter);
             return true;
-        } catch (ParseException e) {
+        } catch (DateTimeParseException e) {
             return false;
         }
     }
@@ -239,10 +248,7 @@ public class LexemeProcessor {
     }
 
     private boolean isLatinLetter(char c) {
-        char[] buf = new char[1];
-        String.valueOf(c).getChars(0, 1, buf, 0);
-        char ch = buf[0];
-        return (ch >= 'A' && ch <= 'Z') || (ch >= 'a' && ch <= 'z');
+        return (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z');
     }
 
     private String lastDelimiterDiagnostics(String source, String delimiters) {

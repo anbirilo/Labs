@@ -37,6 +37,8 @@ public class Main {
             }
             printWithNumbers(array);
             longestString(array);
+            writer.write("");
+            writer.newLine();
             
         } catch(IOException err) {
             err.printStackTrace();

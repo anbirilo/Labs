@@ -7,6 +7,8 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in).useLocale(Locale.US);
 
+import java.util.Scanner;
+
         System.out.print("Введите x из диапазона [-1; 1): ");
         double x = scanner.nextDouble();
 
