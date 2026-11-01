@@ -20,7 +20,7 @@ int main() {
     for (int i = 0; i < count; ++i) {
         fout << orders[i] << "\n";
     }
-
+    
     delete[] orders;
     return 0;
 }
