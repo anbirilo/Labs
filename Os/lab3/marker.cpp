@@ -1,71 +1,72 @@
 #include "marker.h"
 
 #include <iostream>
-#include <chrono>
 #include <cstdlib>
 
 using namespace std;
 
-vector<int> arr;            // общий массив
-mutex mtx;                  // защищает массив, консоль и состояния потоков
-condition_variable cv;
-bool started = false;       // сигнал на начало работы от main
-
-static void sleepMs(int ms) {
-    this_thread::sleep_for(chrono::milliseconds(ms));
-}
+vector<int>          arr;
+vector<MarkerParams> markers;
+CRITICAL_SECTION     cs;
+HANDLE               hStartEvent;
 
 void printArray() {
+    EnterCriticalSection(&cs);
+    cout << "Массив: ";
     for (size_t i = 0; i < arr.size(); ++i)
         cout << arr[i] << ' ';
     cout << endl;
+    LeaveCriticalSection(&cs);
 }
 
-void marker(MarkerInfo* self) {
-    // 1. Ждём сигнал на начало работы от main
-    {
-        unique_lock<mutex> lk(mtx);
-        cv.wait(lk, [] { return started; });
-    }
+DWORD WINAPI marker(LPVOID param) {
+    // Параметр потока — его порядковый номер
+    int id = static_cast<int>(reinterpret_cast<INT_PTR>(param));
+    MarkerParams& self = markers[id - 1];
 
-    // 2. Инициализация генератора случайных чисел
-    srand(self->id);
+    // 1. Начать работу по сигналу от main
+    WaitForSingleObject(hStartEvent, INFINITE);
+
+    // 2. Инициализировать генерацию случайных чисел своим порядковым номером
+    srand(id);
 
     int marked = 0;  // количество помеченных элементов
 
-    // 3. Основной цикл
+    // 3. Работать циклически
     while (true) {
-        int idx = rand() % static_cast<int>(arr.size());   // 3.1, 3.2
+        // 3.1, 3.2 Случайное число по модулю размерности массива
+        int idx = rand() % static_cast<int>(arr.size());
 
-        unique_lock<mutex> lk(mtx);
-        if (arr[idx] == 0) {                               // 3.3
-            sleepMs(5);                                    // 3.3.1
-            arr[idx] = self->id;                           // 3.3.2
+        EnterCriticalSection(&cs);
+        if (arr[idx] == 0) {                        // 3.3
+            Sleep(5);                               // 3.3.1
+            arr[idx] = id;                          // 3.3.2
             ++marked;
-            lk.unlock();
-            sleepMs(5);                                    // 3.3.3
-            continue;                                      // 3.3.4
+            LeaveCriticalSection(&cs);
+            Sleep(5);                               // 3.3.3
+            continue;                               // 3.3.4
         }
 
-        // 3.4 Элемент уже занят
-        cout << "Marker #" << self->id
+        // 3.4 Элемент уже помечен
+        cout << "Marker #" << id
              << ": помечено элементов = " << marked
              << ", невозможно пометить индекс = " << idx << endl;   // 3.4.1
+        LeaveCriticalSection(&cs);
 
-        self->cmd = Cmd::Wait;
-        self->blocked = true;                              // 3.4.2
-        cv.notify_all();
+        SetEvent(self.hBlocked);                    // 3.4.2
 
-        cv.wait(lk, [&] { return self->cmd != Cmd::Wait; });   // 3.4.3
+        // 3.4.3 Ждём ответный сигнал: индекс 0 — завершение, индекс 1 — продолжение
+        HANDLE commands[2] = { self.hTerminate, self.hContinue };
+        DWORD r = WaitForMultipleObjects(2, commands, FALSE, INFINITE);
 
-        if (self->cmd == Cmd::Terminate) {                 // 4
-            for (size_t i = 0; i < arr.size(); ++i)        // 4.1
-                if (arr[i] == self->id)
+        if (r == WAIT_OBJECT_0) {                   // 4. Сигнал на завершение
+            EnterCriticalSection(&cs);
+            for (size_t i = 0; i < arr.size(); ++i) // 4.1
+                if (arr[i] == id)
                     arr[i] = 0;
-            self->finished = true;                         // 4.2
-            cv.notify_all();
-            return;
+            LeaveCriticalSection(&cs);
+            return 0;                               // 4.2
         }
-        // 5. Continue -> продолжаем цикл
+        // 5. Сигнал на продолжение — новый виток цикла
     }
 }

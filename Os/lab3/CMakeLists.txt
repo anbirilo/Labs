@@ -4,11 +4,14 @@ project(marker_lab CXX)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(Threads REQUIRED)
+if(MSVC)
+  add_compile_options(/utf-8)   # исходники в UTF-8
+endif()
 
+# Сама лабораторная работа
 add_executable(lab main.cpp marker.cpp)
-target_link_libraries(lab Threads::Threads)
 
+# Google Test (скачивается автоматически при конфигурации)
 include(FetchContent)
 FetchContent_Declare(
   googletest
@@ -17,9 +20,10 @@ FetchContent_Declare(
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
+# Тесты
 enable_testing()
 add_executable(lab_tests tests.cpp marker.cpp)
-target_link_libraries(lab_tests GTest::gtest_main Threads::Threads)
+target_link_libraries(lab_tests GTest::gtest_main)
 
 include(GoogleTest)
 gtest_discover_tests(lab_tests)

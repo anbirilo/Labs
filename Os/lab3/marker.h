@@ -1,25 +1,25 @@
 #pragma once
 
+#include <windows.h>
 #include <vector>
-#include <thread>
-#include <mutex>
-#include <condition_variable>
 
-// Сигнал от main к потоку marker
-enum class Cmd { Wait, Continue, Terminate };
-
-struct MarkerInfo {
-    int id;                 // порядковый номер потока
-    Cmd cmd = Cmd::Wait;    // ответный сигнал от main
-    bool blocked = false;   // поток подал сигнал о невозможности продолжения
-    bool finished = false;  // поток завершил работу
-    std::thread th;
+// Всё, что относится к одному потоку marker
+struct MarkerParams {
+    int    id;          // порядковый номер потока (начиная с 1)
+    HANDLE hThread;     // дескриптор потока
+    HANDLE hBlocked;    // marker -> main: «не могу продолжать» (ручной сброс)
+    HANDLE hContinue;   // main -> marker: «продолжай»          (автосброс)
+    HANDLE hTerminate;  // main -> marker: «завершайся»         (автосброс)
+    bool   finished;    // поток завершён (меняет и читает только main)
 };
 
-extern std::vector<int> arr;            // общий массив
-extern std::mutex mtx;                  // защищает массив, консоль и состояния потоков
-extern std::condition_variable cv;
-extern bool started;                    // сигнал на начало работы от main
+extern std::vector<int>          arr;          // общий массив
+extern std::vector<MarkerParams> markers;      // markers[i] описывает поток с номером i + 1
+extern CRITICAL_SECTION          cs;           // защищает массив и вывод в консоль
+extern HANDLE                    hStartEvent;  // main -> все marker: «начинайте работу» (ручной сброс)
 
+// Вывод содержимого массива в консоль
 void printArray();
-void marker(MarkerInfo* self);
+
+// Функция потока marker. Параметр — порядковый номер потока.
+DWORD WINAPI marker(LPVOID param);
