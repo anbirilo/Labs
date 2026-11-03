@@ -48,9 +48,7 @@ int main() {
     for (int i = 0; i < q; i++) {
         int u, v;
         scanf("%d %d", &u, &v);
-        bool changed = parent_[u] != parent_[v]; 
-        unite(u, v);
-        if (changed) components--;
+        if (unite(u, v)) components--;
         out += to_string(components);
         out += '\n';
     }
