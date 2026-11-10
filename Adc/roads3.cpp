@@ -7,11 +7,19 @@ int* sz;
 int components;
 
 int findSet(int v) {
-    if (parent[v] == v)
-        return v;
+    int root = v;
 
-    parent[v] = findSet(parent[v]);
-    return parent[v];
+    while (parent[root] != root) {
+        root = parent[root];
+    }
+
+    while (parent[v] != v) {
+        int p = parent[v];
+        parent[v] = root;
+        v = p;
+    }
+
+    return root;
 }
 
 void unionSet(int a, int b) {
@@ -20,7 +28,9 @@ void unionSet(int a, int b) {
 
     if (a != b) {
         if (sz[a] < sz[b]) {
-            swap(a, b);
+            int temp = a;
+            a = b;
+            b = temp;
         }
 
         parent[b] = a;
@@ -58,13 +68,9 @@ int main() {
 
     int* x = new int[q];
 
-    bool* destroyed = new bool[m + 1];
+    bool* destroyed = new bool[m + 1]();
 
     char* ans = new char[q];
-
-    for (int i = 1; i <= m; i++) {
-        destroyed[i] = false;
-    }
 
     for (int i = 1; i <= m; i++) {
         cin >> u[i] >> v[i];
@@ -85,15 +91,14 @@ int main() {
 
     for (int i = q - 1; i >= 0; i--) {
 
-        int id = x[i];
-
-        unionSet(u[id], v[id]);
-
         if (isConnected()) {
             ans[i] = '1';
         } else {
             ans[i] = '0';
         }
+
+        int id = x[i];
+        unionSet(u[id], v[id]);
     }
 
     for (int i = 0; i < q; i++) {
