@@ -5,10 +5,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-/**
- * Абстрактный класс для работы с файлом данных (п. 2, 4).
- * Наследники конкретизируют формат и направление (чтение / запись).
- */
+
 public abstract class AbstractFileHandler {
     protected static final Charset CHARSET = StandardCharsets.UTF_8;
 
@@ -18,7 +15,6 @@ public abstract class AbstractFileHandler {
         this.path = path;
     }
 
-    /** Название формата для сообщений, например "TXT". */
     public abstract String getFormat();
 
     public Path getPath() {

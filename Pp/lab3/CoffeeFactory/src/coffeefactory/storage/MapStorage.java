@@ -1,16 +1,12 @@
 package coffeefactory.storage;
 
-import coffeefactory.model.CoffeeMaker;
-
 import java.util.Collection;
 import java.util.Collections;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
-/**
- * Хранилище на основе Map: ключ — id, значение — кофеварка (п. 3, 8).
- * TreeMap (SortedMap) хранит записи отсортированными по ключу (id).
- */
+import coffeefactory.model.CoffeeMaker;
+
 public class MapStorage extends AbstractStorage {
     private final SortedMap<Integer, CoffeeMaker> items = new TreeMap<>();
 
@@ -47,7 +43,6 @@ public class MapStorage extends AbstractStorage {
         return Collections.unmodifiableCollection(items.values());
     }
 
-    /** Сама карта (только для чтения) — чтобы выводить пары «ключ -> значение». */
     public SortedMap<Integer, CoffeeMaker> getMap() {
         return Collections.unmodifiableSortedMap(items);
     }

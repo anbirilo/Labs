@@ -2,10 +2,7 @@ package coffeefactory.model;
 
 import java.util.Date;
 
-/**
- * Абстрактный базовый класс для любой продукции фабрики (п. 2, 5).
- * Хранит поля, общие для всех изделий.
- */
+
 public abstract class Appliance {
     private int id;
     private String model;
@@ -19,7 +16,6 @@ public abstract class Appliance {
         this.price = price;
     }
 
-    /** Название категории изделия (у каждого наследника своё). */
     public abstract String getCategory();
 
     public int getId() {

@@ -1,8 +1,5 @@
 package coffeefactory.io;
 
-import coffeefactory.model.CoffeeMaker;
-import coffeefactory.util.DateUtil;
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -11,10 +8,10 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Locale;
 
-/**
- * Запись кофеварок в текстовый файл (п. 4).
- * Формат строки совпадает с TxtFileReader.
- */
+import coffeefactory.model.CoffeeMaker;
+import coffeefactory.util.DateUtil;
+
+
 public class TxtFileWriter extends AbstractFileHandler {
     private static final String HEADER = "# id;тип;модель;мощность(Вт);бак(мл);дата выпуска;цена";
 

@@ -1,14 +1,10 @@
 package coffeefactory.model;
 
-import coffeefactory.util.DateUtil;
-
 import java.util.Date;
 import java.util.Locale;
 
-/**
- * Кофеварка — наследник абстрактного класса Appliance (п. 5).
- * Поля: id, тип, модель, мощность, объём бака, дата выпуска (Date), цена.
- */
+import coffeefactory.util.DateUtil;
+
 public class CoffeeMaker extends Appliance {
     private CoffeeMakerType type;
     private int powerW;
@@ -22,7 +18,6 @@ public class CoffeeMaker extends Appliance {
         this.tankVolumeMl = tankVolumeMl;
     }
 
-    /** Конструктор копирования — нужен, чтобы редактировать копию, а не общий объект. */
     public CoffeeMaker(CoffeeMaker other) {
         this(other.getId(), other.type, other.getModel(), other.powerW,
                 other.tankVolumeMl, other.getReleaseDate(), other.getPrice());

@@ -2,10 +2,7 @@ package coffeefactory.model;
 
 import java.util.Locale;
 
-/**
- * Тип кофеварки. В файл записывается имя константы (name()),
- * на экран выводится русское название (toString()).
- */
+
 public enum CoffeeMakerType {
     DRIP("Капельная"),
     ESPRESSO("Рожковая (эспрессо)"),
@@ -37,7 +34,7 @@ public enum CoffeeMakerType {
     public static CoffeeMakerType parse(String text) {
         String value = text.trim();
         if (value.matches("\\d+")) {
-            int index = Integer.parseInt(value); // при переполнении тоже IllegalArgumentException
+            int index = Integer.parseInt(value); 
             if (index >= 1 && index <= values().length) {
                 return values()[index - 1];
             }
@@ -46,7 +43,6 @@ public enum CoffeeMakerType {
         return valueOf(value.toUpperCase(Locale.ROOT));
     }
 
-    /** Список имён через запятую: "DRIP, ESPRESSO, ..." */
     public static String names() {
         StringBuilder sb = new StringBuilder();
         for (CoffeeMakerType t : values()) {
@@ -58,7 +54,6 @@ public enum CoffeeMakerType {
         return sb.toString();
     }
 
-    /** Подсказка для консоли: "1 — Капельная, 2 — ..." */
     public static String hint() {
         StringBuilder sb = new StringBuilder();
         CoffeeMakerType[] all = values();

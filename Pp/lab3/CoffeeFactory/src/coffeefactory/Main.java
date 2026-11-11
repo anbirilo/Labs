@@ -1,15 +1,12 @@
 package coffeefactory;
 
+import java.nio.file.Paths;
+
 import coffeefactory.service.FactoryService;
 import coffeefactory.ui.ConsoleMenu;
 import coffeefactory.util.ErrorLogger;
 
-import java.nio.file.Paths;
 
-/**
- * Точка входа (п. 1): main только создаёт объекты и вызывает методы.
- * Создание меню вынесено в отдельную функцию startMenu.
- */
 public class Main {
 
     public static void main(String[] args) {

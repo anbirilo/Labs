@@ -1,13 +1,12 @@
 package coffeefactory.storage;
 
-import coffeefactory.model.CoffeeMaker;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-/** Хранилище на основе List (п. 3, 8). */
+import coffeefactory.model.CoffeeMaker;
+
 public class ListStorage extends AbstractStorage {
     private final List<CoffeeMaker> items = new ArrayList<>();
 

@@ -1,13 +1,5 @@
 package coffeefactory.ui;
 
-import coffeefactory.model.CoffeeMaker;
-import coffeefactory.model.CoffeeMakerType;
-import coffeefactory.service.FactoryService;
-import coffeefactory.util.CoffeeMakerComparators;
-import coffeefactory.util.DateUtil;
-import coffeefactory.util.ValidationException;
-import coffeefactory.util.Validator;
-
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
@@ -19,13 +11,15 @@ import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
-/**
- * Консольное меню (п. 6): добавление, редактирование, удаление,
- * вывод через итераторы (п. 10), сортировка (п. 11), чтение/запись файла.
- */
-public class ConsoleMenu {
+import coffeefactory.model.CoffeeMaker;
+import coffeefactory.model.CoffeeMakerType;
+import coffeefactory.service.FactoryService;
+import coffeefactory.util.CoffeeMakerComparators;
+import coffeefactory.util.DateUtil;
+import coffeefactory.util.ValidationException;
+import coffeefactory.util.Validator;
 
-    /** Разбор введённой строки с проверкой; бросает ValidationException при ошибке. */
+public class ConsoleMenu {
     private interface Parser<T> {
         T parse(String text) throws ValidationException;
     }
@@ -73,13 +67,12 @@ public class ConsoleMenu {
             } catch (IOException e) {
                 System.out.println("Ошибка работы с файлом: " + e.getMessage());
             } catch (NoSuchElementException e) {
-                running = false; // ввод закончился (Ctrl+D / Ctrl+Z)
+                running = false;
             }
         }
         System.out.println("Работа завершена.");
     }
 
-    // ---------- меню ----------
 
     private void printMenu() {
         System.out.println();
@@ -96,8 +89,6 @@ public class ConsoleMenu {
         System.out.println("8 — Сохранить в файл");
         System.out.println("0 — Выход");
     }
-
-    // ---------- вывод через итераторы (п. 10) ----------
 
     private void printList() {
         System.out.println("--- Данные из List ---");
@@ -129,7 +120,6 @@ public class ConsoleMenu {
         }
     }
 
-    // ---------- добавление / редактирование / удаление (п. 9) ----------
 
     private void addMaker() throws IOException {
         System.out.println("--- Добавление кофеварки ---");
@@ -162,7 +152,7 @@ public class ConsoleMenu {
         System.out.println("Текущие данные: " + old);
         System.out.println("(Enter — оставить прежнее значение)");
 
-        CoffeeMaker edited = new CoffeeMaker(old); // правим копию
+        CoffeeMaker edited = new CoffeeMaker(old); 
         edited.setType(readValidOrKeep("Тип (" + CoffeeMakerType.hint() + ") [" + old.getType() + "]: ",
                 Validator::parseType, old.getType()));
         edited.setModel(readValidOrKeep("Модель [" + old.getModel() + "]: ",
@@ -194,7 +184,6 @@ public class ConsoleMenu {
         }
     }
 
-    // ---------- сортировка (п. 11) ----------
 
     private void sortAndPrint() {
         System.out.println("--- Сортировка ---");
@@ -221,12 +210,9 @@ public class ConsoleMenu {
                 return n;
             }
         } catch (NumberFormatException ignored) {
-            // обрабатывается ниже
         }
         throw new ValidationException("введите число от 1 до " + max);
     }
-
-    // ---------- файл ----------
 
     private void loadFromFile() throws IOException {
         Path path = readPath("Путь к файлу для загрузки");
@@ -245,8 +231,6 @@ public class ConsoleMenu {
         String text = readLine(prompt + " [" + service.getCurrentFile() + "]: ").trim();
         return text.isEmpty() ? service.getCurrentFile() : Paths.get(text);
     }
-
-    // ---------- вспомогательные методы ввода ----------
 
     private int readNewId() {
         while (true) {
