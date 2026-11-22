@@ -1,0 +1,14 @@
+<!ELEMENT coffeeMachines (coffeeMachine*)>
+<!ELEMENT coffeeMachine (type, model, powerWatts, pressureBar, waterTankMl, cupsPerCycle, manufactureDate, price, manufacturer, color, warrantyMonths)>
+<!ATTLIST coffeeMachine id CDATA #REQUIRED>
+<!ELEMENT type (#PCDATA)>
+<!ELEMENT model (#PCDATA)>
+<!ELEMENT powerWatts (#PCDATA)>
+<!ELEMENT pressureBar (#PCDATA)>
+<!ELEMENT waterTankMl (#PCDATA)>
+<!ELEMENT cupsPerCycle (#PCDATA)>
+<!ELEMENT manufactureDate (#PCDATA)>
+<!ELEMENT price (#PCDATA)>
+<!ELEMENT manufacturer (#PCDATA)>
+<!ELEMENT color (#PCDATA)>
+<!ELEMENT warrantyMonths (#PCDATA)>

@@ -1,0 +1,17 @@
+# Каталог фабрики по сборке кофеварок
+id;type;model;powerWatts;pressureBar;waterTankMl;cupsPerCycle;manufactureDate;price;manufacturer;color;warrantyMonths
+1;ESPRESSO;DeLonghi Dedica EC685;1350;15;1100;1;15.03.2022;24990.50;DeLonghi;серебристый;24
+2;AUTOMATIC;Philips Series 2200 EP2220;1500;15;1800;2;01.11.2023;39990;Philips;чёрный;24
+3;CAPSULE;Nespresso Vertuo Next;1300;2.4;1200;1;20.06.2021;12990;Nespresso;белый;12
+4;DRIP;Kitfort KT-719;1000;0;700;12;05.09.2020;4990;Kitfort;чёрный;12
+5;MOKA;Bialetti Brikka;0;0;180;2;11.01.2019;3490;Bialetti;серебристый;12
+6;AUTOMATIC;Krups Evidence EA891;1450;15;2600;2;18.04.2024;54990;Krups;серый;24
+7;ESPRESSO;Polaris PCM 1535E;1400;15;1000;2;30.08.2022;18990;Polaris;чёрный;24
+8;POD;Bosch Tassimo Style;1300;3.3;700;1;12.12.2021;7990;Bosch;белый;12
+bad-id;ESPRESSO;Сломанный идентификатор;1300;15;1000;1;01.01.2020;10000;Test;красный;12
+9;DRIP;;1000;0;500;4;01.01.2020;4500;NoModel;красный;12
+10;ROCKET;Неизвестный тип;1500;15;1000;1;01.01.2020;10000;Test;красный;12
+11;ESPRESSO;Плохие числа;мощность;давление;-5;0;31.02.2020;-100;###;red!;999
+12;ESPRESSO;Garlyn L70;1200;15;900;1;02.02.2023;15990;Garlyn;чёрный;24
+12;ESPRESSO;Дубликат Garlyn;1200;15;900;1;02.02.2023;15990;Garlyn;чёрный;24
+слишком;мало;полей

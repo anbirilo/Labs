@@ -1,0 +1,10 @@
+out/
+target/
+.idea/
+*.iml
+data/errors.log
+data/*.enc
+data/*.zip
+data/*.jar
+data/*.md5
+data/coffeemachines.restored.txt
