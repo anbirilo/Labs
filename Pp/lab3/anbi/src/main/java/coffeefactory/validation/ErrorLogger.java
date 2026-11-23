@@ -1,16 +1,14 @@
 package coffeefactory.validation;
 
-import coffeefactory.common.DataAccessException;
-import coffeefactory.common.Io;
-
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-/**
- * Журнал некорректных строк: консоль и файл *.log.
- */
+import coffeefactory.common.DataAccessException;
+import coffeefactory.common.Io;
+
+
 public class ErrorLogger {
     private final Path logFile;
     private final boolean echoToConsole;

@@ -1,5 +1,7 @@
 package coffeefactory.app;
 
+import java.nio.file.Path;
+
 import coffeefactory.archive.ArchiveService;
 import coffeefactory.assembly.AssemblyFactory;
 import coffeefactory.catalog.MachineCatalog;
@@ -16,12 +18,6 @@ import coffeefactory.xml.XmlDomHandler;
 import coffeefactory.xml.XmlSaxHandler;
 import coffeefactory.xml.XmlStaxHandler;
 import coffeefactory.xml.XsdValidator;
-
-import java.nio.file.Path;
-
-/**
- * Связывает хранилища, файлы и сервисы одного запуска.
- */
 public final class AppContext {
     private final DataPaths paths;
     private final ErrorLogger logger;

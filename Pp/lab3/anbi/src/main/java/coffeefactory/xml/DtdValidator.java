@@ -15,9 +15,6 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Проверка XML-документа по DTD.
- */
 public class DtdValidator {
     public List<String> validate(Path xml, Path dtd) {
         List<String> errors = new ArrayList<String>();

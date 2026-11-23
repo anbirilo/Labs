@@ -11,9 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Чтение и запись каталога в JSON.
- */
 public class JsonHandler extends AbstractWriter<CoffeeMachine> {
     private final JsonCodec codec = new JsonCodec();
     private final RecordLoader loader;

@@ -8,9 +8,6 @@ import java.util.List;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
-/**
- * Хранилище кофеварок в SortedMap. Ключ — id, поэтому обход идёт по возрастанию идентификатора.
- */
 public class MapStorage extends AbstractStorage<CoffeeMachine> {
     private final SortedMap<Long, CoffeeMachine> items = new TreeMap<Long, CoffeeMachine>();
 

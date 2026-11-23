@@ -2,9 +2,7 @@ package coffeefactory.model;
 
 import java.util.Locale;
 
-/**
- * Линии сборки фабрики: различные виды кофеварок.
- */
+
 public enum MachineType {
     ESPRESSO("Рожковая эспрессо"),
     DRIP("Капельная"),

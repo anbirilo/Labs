@@ -1,14 +1,10 @@
 package coffeefactory.storage;
 
-import coffeefactory.model.AbstractEntity;
-
 import java.io.PrintStream;
 import java.util.Iterator;
 import java.util.List;
 
-/**
- * Абстрактное хранилище коллекции сущностей.
- */
+import coffeefactory.model.AbstractEntity;
 public abstract class AbstractStorage<T extends AbstractEntity> implements Iterable<T> {
     public abstract boolean add(T entity);
 

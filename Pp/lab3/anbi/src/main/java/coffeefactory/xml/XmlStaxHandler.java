@@ -21,9 +21,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Чтение и запись XML потоковым StAX-парсером.
- */
 public class XmlStaxHandler extends AbstractWriter<CoffeeMachine> {
     private final RecordLoader loader;
 

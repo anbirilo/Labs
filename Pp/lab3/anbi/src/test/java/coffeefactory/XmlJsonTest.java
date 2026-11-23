@@ -1,20 +1,5 @@
 package coffeefactory;
 
-import coffeefactory.common.DataAccessException;
-import coffeefactory.common.Io;
-import coffeefactory.json.JsonCodec;
-import coffeefactory.json.JsonHandler;
-import coffeefactory.model.CoffeeMachine;
-import coffeefactory.model.MachineType;
-import coffeefactory.validation.ErrorLogger;
-import coffeefactory.xml.DtdValidator;
-import coffeefactory.xml.XmlDomHandler;
-import coffeefactory.xml.XmlSaxHandler;
-import coffeefactory.xml.XmlStaxHandler;
-import coffeefactory.xml.XsdValidator;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.io.TempDir;
-
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
@@ -27,6 +12,21 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
+
+import coffeefactory.common.DataAccessException;
+import coffeefactory.common.Io;
+import coffeefactory.json.JsonCodec;
+import coffeefactory.json.JsonHandler;
+import coffeefactory.model.CoffeeMachine;
+import coffeefactory.model.MachineType;
+import coffeefactory.validation.ErrorLogger;
+import coffeefactory.xml.DtdValidator;
+import coffeefactory.xml.XmlDomHandler;
+import coffeefactory.xml.XmlSaxHandler;
+import coffeefactory.xml.XmlStaxHandler;
+import coffeefactory.xml.XsdValidator;
 
 class XmlJsonTest {
     @TempDir

@@ -1,13 +1,10 @@
 package coffeefactory.sort;
 
-import coffeefactory.model.CoffeeMachine;
-
 import java.util.Comparator;
 import java.util.Date;
 
-/**
- * Компараторы полей кофеварки. Сравнение записано лямбда-выражениями.
- */
+import coffeefactory.model.CoffeeMachine;
+
 public final class MachineComparators {
     public static final Comparator<CoffeeMachine> BY_PRICE =
             (left, right) -> Double.compare(left.getPrice(), right.getPrice());

@@ -1,9 +1,5 @@
 package coffeefactory;
 
-import coffeefactory.app.AppContext;
-import coffeefactory.catalog.MachineCatalog;
-import coffeefactory.menu.ConsoleMenu;
-
 import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
@@ -11,10 +7,11 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Scanner;
 
-/**
- * Собирает сервисы и запускает меню.
- * В main создаётся только этот объект и вызывается start; само меню — в createMenu.
- */
+import coffeefactory.app.AppContext;
+import coffeefactory.catalog.MachineCatalog;
+import coffeefactory.menu.ConsoleMenu;
+
+
 public class Application {
     private final Path dataRoot;
     private MachineCatalog catalog;

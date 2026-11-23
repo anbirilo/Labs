@@ -1,12 +1,10 @@
 package coffeefactory.assembly;
 
-import coffeefactory.model.MachineType;
-
 import java.util.Date;
 
-/**
- * Заявка на сборку кофеварки.
- */
+import coffeefactory.model.MachineType;
+
+
 public class AssemblyRequest {
     private long id;
     private MachineType type;

@@ -6,11 +6,6 @@ import java.util.LinkedHashMap;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
-
-/**
- * Кофеварка, собранная на фабрике.
- * Поля хранятся здесь, доступ к ним — через get/set, строковое представление переопределено.
- */
 public class CoffeeMachine extends AbstractEntity {
     public static final String DATE_PATTERN = "dd.MM.yyyy";
     public static final String[] COLUMNS = {

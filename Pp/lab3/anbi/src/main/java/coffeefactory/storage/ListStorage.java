@@ -6,9 +6,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-/**
- * Хранилище кофеварок в List. Обход и удаление выполняются итератором.
- */
 public class ListStorage extends AbstractStorage<CoffeeMachine> {
     private final List<CoffeeMachine> items = new ArrayList<CoffeeMachine>();
 

@@ -6,9 +6,6 @@ import org.xml.sax.helpers.DefaultHandler;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Собирает сообщения проверки XML, не прерывая разбор на первой ошибке.
- */
 public class CollectingErrorHandler extends DefaultHandler {
     private final List<String> errors = new ArrayList<String>();
 

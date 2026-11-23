@@ -6,9 +6,6 @@ import coffeefactory.model.MachineType;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Абстрактная линия сборки. Общие поля заполняются здесь, особенности типа — в наследниках.
- */
 public abstract class AbstractAssembler {
     public abstract MachineType supportedType();
 

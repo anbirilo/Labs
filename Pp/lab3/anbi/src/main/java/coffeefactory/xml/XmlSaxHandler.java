@@ -22,9 +22,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Чтение XML событийным SAX-парсером.
- */
 public class XmlSaxHandler extends AbstractReader<CoffeeMachine> {
     private final RecordLoader loader;
 

@@ -19,9 +19,7 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
 
-/**
- * Упаковка файлов каталога в ZIP и JAR.
- */
+
 public class ArchiveService {
     public void zip(Path archive, List<Path> files) {
         writeZip(archive, files, false);

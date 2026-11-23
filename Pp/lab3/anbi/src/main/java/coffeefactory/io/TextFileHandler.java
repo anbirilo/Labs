@@ -16,9 +16,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-/**
- * Чтение и запись каталога в текстовый файл с разделителем «;».
- */
 public class TextFileHandler extends AbstractWriter<CoffeeMachine> {
     private final RecordLoader loader;
     private final ErrorLogger logger;

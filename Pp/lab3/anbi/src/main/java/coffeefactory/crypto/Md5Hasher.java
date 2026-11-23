@@ -1,16 +1,14 @@
 package coffeefactory.crypto;
 
-import coffeefactory.common.DataAccessException;
-import coffeefactory.common.Io;
-
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-/**
- * Отпечаток пароля алгоритмом MD5. Для обратимого шифрования данных используется AES.
- */
+import coffeefactory.common.DataAccessException;
+import coffeefactory.common.Io;
+
+
 public class Md5Hasher {
     public String hash(String value) {
         if (value == null) {

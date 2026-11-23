@@ -14,9 +14,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-/**
- * Синхронно обновляет List, Map и текстовый файл.
- */
+
 public class MachineCatalog {
     private final ListStorage listStorage;
     private final MapStorage mapStorage;

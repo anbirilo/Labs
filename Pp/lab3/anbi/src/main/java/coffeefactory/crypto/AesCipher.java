@@ -1,11 +1,5 @@
 package coffeefactory.crypto;
 
-import coffeefactory.common.DataAccessException;
-import coffeefactory.common.Io;
-
-import javax.crypto.Cipher;
-import javax.crypto.spec.IvParameterSpec;
-import javax.crypto.spec.SecretKeySpec;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import java.security.GeneralSecurityException;
@@ -14,10 +8,13 @@ import java.security.SecureRandom;
 import java.util.Arrays;
 import java.util.Base64;
 
-/**
- * Шифрование данных AES/CBC. Ключ — первые 16 байт SHA-256 от парольной фразы,
- * перед шифротекстом записывается случайный вектор инициализации.
- */
+import javax.crypto.Cipher;
+import javax.crypto.spec.IvParameterSpec;
+import javax.crypto.spec.SecretKeySpec;
+
+import coffeefactory.common.DataAccessException;
+import coffeefactory.common.Io;
+
 public class AesCipher {
     private static final String TRANSFORMATION = "AES/CBC/PKCS5Padding";
     private final SecureRandom random = new SecureRandom();

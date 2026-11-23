@@ -1,13 +1,10 @@
 package coffeefactory.assembly;
 
-import coffeefactory.model.MachineType;
-
 import java.util.Arrays;
 import java.util.List;
 
-/**
- * Фабрика выбирает линию сборки по типу кофеварки.
- */
+import coffeefactory.model.MachineType;
+
 public class AssemblyFactory {
     private final List<AbstractAssembler> lines;
 

@@ -2,9 +2,7 @@ package coffeefactory.model;
 
 import java.util.Map;
 
-/**
- * Абстрактная сущность каталога. Общие данные и контракт сериализации в строку файла.
- */
+=
 public abstract class AbstractEntity {
     private long id;
 

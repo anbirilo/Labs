@@ -12,9 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 import org.xml.sax.SAXException;
 
-/**
- * Проверка XML-документа по XSD-схеме.
- */
 public class XsdValidator {
     public List<String> validate(Path xml, Path xsd) {
         List<String> errors = new ArrayList<String>();

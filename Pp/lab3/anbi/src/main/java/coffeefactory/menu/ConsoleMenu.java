@@ -27,9 +27,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
-/**
- * Консольное меню. Создаётся отдельным методом, цикл выбора не находится в main.
- */
+
 public class ConsoleMenu {
     private final MachineCatalog catalog;
     private final XmlDomHandler domHandler;

@@ -1,13 +1,10 @@
 package coffeefactory.validation;
 
-import coffeefactory.model.CoffeeMachine;
-
 import java.util.List;
 import java.util.Map;
 
-/**
- * Принимает разобранные поля, пишет ошибки и складывает годные объекты.
- */
+import coffeefactory.model.CoffeeMachine;
+
 public class RecordLoader {
     private final CoffeeMachineMapper mapper;
     private final ErrorLogger logger;

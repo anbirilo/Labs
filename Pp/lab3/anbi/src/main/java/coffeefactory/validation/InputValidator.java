@@ -1,16 +1,14 @@
 package coffeefactory.validation;
 
-import coffeefactory.model.CoffeeMachine;
-import coffeefactory.model.MachineType;
-
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-/**
- * Проверка чисел, дат и текстовых полей кофеварки.
- */
+import coffeefactory.model.CoffeeMachine;
+import coffeefactory.model.MachineType;
+
+
 public class InputValidator {
     public Long parseId(String raw) {
         String value = normalize(raw);

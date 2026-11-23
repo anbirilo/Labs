@@ -8,10 +8,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Разбор полей одной кофеварки.
- * Структурные ошибки отбрасывают всю запись, некорректные числа и даты обнуляются.
- */
 public class CoffeeMachineMapper {
     private final InputValidator validator;
 
