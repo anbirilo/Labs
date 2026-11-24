@@ -221,10 +221,10 @@ void PreOrderTraversal(Node* tree, int v, ofstream& out)
     if (v == -1)
         return;
 
-    out << tree[v].key << '\n';
-
     PreOrderTraversal(tree, tree[v].left, out);
     PreOrderTraversal(tree, tree[v].right, out);
+
+    out << tree[v].key << '\n';
 }
 
 int main()
