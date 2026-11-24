@@ -1,4 +1,3 @@
-
 #include <iostream>
 #include <fstream>
 #include <climits>
@@ -41,6 +40,9 @@ void Insert(Node* tree, int& count, int key, int& root)
         tree[count].key = key;
         tree[count].side = '-';
         tree[count].parent = -1;
+        tree[count].dist = -1;
+        tree[count].sum = 0;
+        tree[count].leaf = -1;
         tree[count].active = true;
 
         root = count;
@@ -70,6 +72,9 @@ void Insert(Node* tree, int& count, int key, int& root)
             tree[count].key = key;
             tree[count].side = side;
             tree[count].parent = current;
+            tree[count].dist = -1;
+            tree[count].sum = 0;
+            tree[count].leaf = -1;
             tree[count].active = true;
 
             count++;
