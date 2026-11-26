@@ -1,109 +1,94 @@
+#include <cstdio>
 
-#include <iostream>
-#include <vector>
+const int MAXV = 750000 + 5;
 
-using namespace std;
+static FILE* in;
+static char buf[1 << 16];
+static size_t bufLen = 0, bufPos = 0;
 
-struct Edge
-{
-    int u, v;
-};
+static inline int readChar() {
+    if (bufPos == bufLen) {
+        bufLen = fread(buf, 1, sizeof(buf), in);
+        bufPos = 0;
+        if (bufLen == 0) return EOF;
+    }
+    return buf[bufPos++];
+}
 
-vector<int> parent;
-vector<int> sz;
+static inline int readInt() {
+    int c = readChar();
+    while (c != EOF && (c < '0' || c > '9')) c = readChar();
+    int x = 0;
+    while (c >= '0' && c <= '9') {
+        x = x * 10 + (c - '0');
+        c = readChar();
+    }
+    return x;
+}
 
-int components;
+static int parent[MAXV];
+static int components;
 
-void MakeSet(int n)
-{
-    parent.resize(n + 1);
-    sz.resize(n + 1);
+static inline int findRoot(int x) {
+    while (parent[x] >= 0) {
+        int p = parent[x];
+        if (parent[p] >= 0) parent[x] = parent[p]; 
+        x = parent[x];
+    }
+    return x;
+}
 
+static inline void unite(int a, int b) {
+    a = findRoot(a);
+    b = findRoot(b);
+    if (a == b) return;
+    if (parent[a] > parent[b]) { 
+        int t = a;
+        a = b;
+        b = t;
+    }
+    parent[a] += parent[b];
+    parent[b] = a;
+    --components;
+}
+
+static int eu[MAXV], ev[MAXV];
+static int query[MAXV];
+static bool removed[MAXV];
+static char answer[MAXV];
+
+int main() {
+    in = fopen("input.txt", "rb");
+    if (!in) return 1;
+
+    int n = readInt(), m = readInt(), q = readInt();
+
+    for (int i = 1; i <= m; ++i) {
+        eu[i] = readInt();
+        ev[i] = readInt();
+    }
+    for (int i = 0; i < q; ++i) {
+        query[i] = readInt();
+        removed[query[i]] = true;
+    }
+    fclose(in);
+
+    for (int v = 1; v <= n; ++v) parent[v] = -1;
     components = n;
 
-    for (int i = 1; i <= n; i++)
-    {
-        parent[i] = i;
-        sz[i] = 1;
-    }
-}
-
-int FindSet(int v)
-{
-    if (parent[v] == v)
-        return v;
-
-    parent[v] = FindSet(parent[v]);
-
-    return parent[v];
-}
-
-void UnionSet(int a, int b)
-{
-    a = FindSet(a);
-    b = FindSet(b);
-
-    if (a != b)
-    {
-        if (sz[a] < sz[b])
-            swap(a, b);
-
-        parent[b] = a;
-        sz[a] += sz[b];
-
-        components--;
-    }
-}
-
-int main()
-{
-    int n, m, q;
-    cin >> n >> m >> q;
-
-    vector<Edge> edges(m + 1);
-
-    for (int i = 1; i <= m; i++)
-    {
-        cin >> edges[i].u >> edges[i].v;
+    for (int i = 1; i <= m; ++i) {
+        if (!removed[i]) unite(eu[i], ev[i]);
     }
 
-    vector<int> destroy(q);
-    vector<bool> used(m + 1, false);
-
-    for (int i = 0; i < q; i++)
-    {
-        cin >> destroy[i];
-        used[destroy[i]] = true;
+    for (int i = q - 1; i >= 0; --i) {
+        answer[i] = (components == 1) ? '1' : '0';
+        unite(eu[query[i]], ev[query[i]]);
     }
 
-    MakeSet(n);
-
-    for (int i = 1; i <= m; i++)
-    {
-        if (!used[i])
-        {
-            UnionSet(edges[i].u, edges[i].v);
-        }
-    }
-
-    vector<int> answer(q);
-
-    for (int i = q - 1; i >= 0; i--)
-    {
-        int id = destroy[i];
-
-        UnionSet(edges[id].u, edges[id].v);
-
-        if (components == 1)
-            answer[i] = 1;
-        else
-            answer[i] = 0;
-    }
-
-    for (int i = 0; i < q; i++)
-    {
-        cout << answer[i];
-    }
-
+    FILE* out = fopen("output.txt", "wb");
+    if (!out) return 1;
+    fwrite(answer, 1, q, out);
+    fputc('\n', out);
+    fclose(out);
     return 0;
 }
