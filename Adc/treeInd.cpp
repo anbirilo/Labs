@@ -15,20 +15,26 @@ struct Node
     int leaf;
 
     bool active;
+
+    int left;
+    int right;
 };
 
 
 int FindChild(Node* tree, int count, int parent, char side)
 {
-    for (int i = 0; i < count; i++)
-    {
-        if (tree[i].active &&
-            tree[i].parent == parent &&
-            tree[i].side == side)
-        {
-            return i;
-        }
-    }
+    if (parent < 0 || parent >= count)
+        return -1;
+
+    int child;
+
+    if (side == 'L')
+        child = tree[parent].left;
+    else
+        child = tree[parent].right;
+
+    if (child != -1 && tree[child].active)
+        return child;
 
     return -1;
 }
@@ -44,6 +50,8 @@ void Insert(Node* tree, int& count, int key, int& root)
         tree[count].sum = 0;
         tree[count].leaf = -1;
         tree[count].active = true;
+        tree[count].left = -1;
+        tree[count].right = -1;
 
         root = count;
         count++;
@@ -76,6 +84,13 @@ void Insert(Node* tree, int& count, int key, int& root)
             tree[count].sum = 0;
             tree[count].leaf = -1;
             tree[count].active = true;
+            tree[count].left = -1;
+            tree[count].right = -1;
+
+            if (side == 'L')
+                tree[current].left = count;
+            else
+                tree[current].right = count;
 
             count++;
 
@@ -210,10 +225,18 @@ void DeleteRight(Node* tree, int count, int& root, int v)
             tree[child].side = '-';
         }
     }
-    else if (child != -1)
+    else
     {
-        tree[child].parent = p;
-        tree[child].side = side;
+        if (child != -1)
+        {
+            tree[child].parent = p;
+            tree[child].side = side;
+        }
+
+        if (side == 'L')
+            tree[p].left = child;
+        else
+            tree[p].right = child;
     }
 
     tree[v].active = false;

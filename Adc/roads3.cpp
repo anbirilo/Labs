@@ -1,37 +1,52 @@
 
 #include <iostream>
+#include <vector>
+
 using namespace std;
 
-int* parent;
-int* sz;
+struct Edge
+{
+    int u, v;
+};
+
+vector<int> parent;
+vector<int> sz;
+
 int components;
 
-int findSet(int v) {
-    int root = v;
+void MakeSet(int n)
+{
+    parent.resize(n + 1);
+    sz.resize(n + 1);
 
-    while (parent[root] != root) {
-        root = parent[root];
+    components = n;
+
+    for (int i = 1; i <= n; i++)
+    {
+        parent[i] = i;
+        sz[i] = 1;
     }
-
-    while (parent[v] != v) {
-        int p = parent[v];
-        parent[v] = root;
-        v = p;
-    }
-
-    return root;
 }
 
-void unionSet(int a, int b) {
-    a = findSet(a);
-    b = findSet(b);
+int FindSet(int v)
+{
+    if (parent[v] == v)
+        return v;
 
-    if (a != b) {
-        if (sz[a] < sz[b]) {
-            int temp = a;
-            a = b;
-            b = temp;
-        }
+    parent[v] = FindSet(parent[v]);
+
+    return parent[v];
+}
+
+void UnionSet(int a, int b)
+{
+    a = FindSet(a);
+    b = FindSet(b);
+
+    if (a != b)
+    {
+        if (sz[a] < sz[b])
+            swap(a, b);
 
         parent[b] = a;
         sz[a] += sz[b];
@@ -40,80 +55,55 @@ void unionSet(int a, int b) {
     }
 }
 
-void initDSU(int n) {
-    parent = new int[n + 1];
-    sz = new int[n + 1];
-
-    components = n;
-
-    for (int i = 1; i <= n; i++) {
-        parent[i] = i;
-        sz[i] = 1;
-    }
-}
-
-bool isConnected() {
-    return components == 1;
-}
-
-int main() {
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
-
+int main()
+{
     int n, m, q;
     cin >> n >> m >> q;
 
-    int* u = new int[m + 1];
-    int* v = new int[m + 1];
+    vector<Edge> edges(m + 1);
 
-    int* x = new int[q];
-
-    bool* destroyed = new bool[m + 1]();
-
-    char* ans = new char[q];
-
-    for (int i = 1; i <= m; i++) {
-        cin >> u[i] >> v[i];
+    for (int i = 1; i <= m; i++)
+    {
+        cin >> edges[i].u >> edges[i].v;
     }
 
-    for (int i = 0; i < q; i++) {
-        cin >> x[i];
-        destroyed[x[i]] = true;
+    vector<int> destroy(q);
+    vector<bool> used(m + 1, false);
+
+    for (int i = 0; i < q; i++)
+    {
+        cin >> destroy[i];
+        used[destroy[i]] = true;
     }
 
-    initDSU(n);
+    MakeSet(n);
 
-    for (int i = 1; i <= m; i++) {
-        if (!destroyed[i]) {
-            unionSet(u[i], v[i]);
+    for (int i = 1; i <= m; i++)
+    {
+        if (!used[i])
+        {
+            UnionSet(edges[i].u, edges[i].v);
         }
     }
 
-    for (int i = q - 1; i >= 0; i--) {
+    vector<int> answer(q);
 
-        if (isConnected()) {
-            ans[i] = '1';
-        } else {
-            ans[i] = '0';
-        }
+    for (int i = q - 1; i >= 0; i--)
+    {
+        int id = destroy[i];
 
-        int id = x[i];
-        unionSet(u[id], v[id]);
+        UnionSet(edges[id].u, edges[id].v);
+
+        if (components == 1)
+            answer[i] = 1;
+        else
+            answer[i] = 0;
     }
 
-    for (int i = 0; i < q; i++) {
-        cout << ans[i];
+    for (int i = 0; i < q; i++)
+    {
+        cout << answer[i];
     }
-
-    cout << '\n';
-
-    delete[] u;
-    delete[] v;
-    delete[] x;
-    delete[] destroyed;
-    delete[] ans;
-    delete[] parent;
-    delete[] sz;
 
     return 0;
 }
